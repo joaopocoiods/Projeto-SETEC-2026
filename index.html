@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <meta
+        name="description"
+        content="Aventura Pixel - jogo de plataforma 2D"
+    >
+
+    <meta
+        name="theme-color"
+        content="#42b9f5"
+    >
+
+    <title>Aventura Pixel</title>
+
+    <!-- =====================================================
+         CSS PRINCIPAL
+    ====================================================== -->
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+<!-- =========================================================
+     APLICAÇÃO
+========================================================= -->
+
+<div id="app">
+
+
+    <!-- =====================================================
+         TELA DE CARREGAMENTO
+    ====================================================== -->
+
+    <section
+        id="loading-screen"
+        class="screen active"
+    >
+
+        <div class="loading-container">
+
+            <div class="loading-logo">
+                <span>AVENTURA</span>
+                <strong>PIXEL</strong>
+            </div>
+
+            <div class="loading-bar">
+
+                <div
+                    id="loading-progress"
+                    class="loading-progress"
+                ></div>
+
+            </div>
+
+            <p id="loading-text">
+                Carregando aventura...
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MENU PRINCIPAL
+    ====================================================== -->
+
+    <section
+        id="main-menu"
+        class="screen hidden"
+    >
+
+        <div class="menu-background">
+
+            <div class="menu-cloud cloud-a"></div>
+            <div class="menu-cloud cloud-b"></div>
+            <div class="menu-cloud cloud-c"></div>
+
+            <div class="menu-mountain mountain-a"></div>
+            <div class="menu-mountain mountain-b"></div>
+
+        </div>
+
+
+        <div class="main-menu-content">
+
+            <div class="game-logo">
+
+                <span>AVENTURA</span>
+
+                <strong>PIXEL</strong>
+
+                <small>
+                    THE GREAT JOURNEY
+                </small>
+
+            </div>
+
+
+            <div class="menu-buttons">
+
+                <button
+                    id="new-game-button"
+                    class="menu-button primary"
+                >
+                    <span>▶</span>
+                    NOVO JOGO
+                </button>
+
+
+                <button
+                    id="continue-button"
+                    class="menu-button"
+                >
+                    <span>▶</span>
+                    CONTINUAR
+                </button>
+
+
+                <button
+                    id="world-map-button"
+                    class="menu-button"
+                >
+                    <span>🗺️</span>
+                    MAPA
+                </button>
+
+
+                <button
+                    id="options-button"
+                    class="menu-button"
+                >
+                    <span>⚙️</span>
+                    OPÇÕES
+                </button>
+
+            </div>
+
+
+            <div class="menu-footer">
+
+                <span>
+                    AVENTURA PIXEL
+                </span>
+
+                <span>
+                    v1.0
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         JOGO
+    ====================================================== -->
+
+    <main
+        id="game"
+        class="screen hidden"
+    >
+
+
+        <!-- =================================================
+             CAMADA DO CÉU
+        ================================================== -->
+
+        <div
+            id="sky-layer"
+            class="game-layer"
+        >
+
+            <div class="sky-gradient"></div>
+
+            <div
+                id="sun"
+                class="sun"
+            ></div>
+
+            <div class="cloud cloud-1"></div>
+            <div class="cloud cloud-2"></div>
+            <div class="cloud cloud-3"></div>
+            <div class="cloud cloud-4"></div>
+
+        </div>
+
+
+        <!-- =================================================
+             MUNDO
+        ================================================== -->
+
+        <div
+            id="world-container"
+            class="game-layer"
+        >
+
+            <div
+                id="world"
+                class="world"
+            >
+
+                <!-- =========================================
+                     BACKGROUND
+                ========================================== -->
+
+                <div
+                    id="background-layer"
+                    class="background-layer"
+                >
+
+                    <div
+                        id="mountains-back"
+                        class="mountains mountains-back"
+                    ></div>
+
+                    <div
+                        id="mountains-front"
+                        class="mountains mountains-front"
+                    ></div>
+
+                </div>
+
+
+                <!-- =========================================
+                     OBJETOS DO CENÁRIO
+                ========================================== -->
+
+                <div
+                    id="decoration-layer"
+                    class="decoration-layer"
+                ></div>
+
+
+                <!-- =========================================
+                     ENTIDADES
+                ========================================== -->
+
+                <div
+                    id="entity-layer"
+                    class="entity-layer"
+                ></div>
+
+
+                <!-- =========================================
+                     BLOCOS
+                ========================================== -->
+
+                <div
+                    id="block-layer"
+                    class="block-layer"
+                ></div>
+
+
+                <!-- =========================================
+                     ITENS
+                ========================================== -->
+
+                <div
+                    id="item-layer"
+                    class="item-layer"
+                ></div>
+
+
+                <!-- =========================================
+                     INIMIGOS
+                ========================================== -->
+
+                <div
+                    id="enemy-layer"
+                    class="enemy-layer"
+                ></div>
+
+
+                <!-- =========================================
+                     EFEITOS
+                ========================================== -->
+
+                <div
+                    id="effect-layer"
+                    class="effect-layer"
+                ></div>
+
+
+                <!-- =========================================
+                     JOGADOR
+                ========================================== -->
+
+                <div
+                    id="player"
+                    class="player"
+                >
+
+                    <div class="player-shadow"></div>
+
+                    <div class="player-hat"></div>
+
+                    <div class="player-head">
+
+                        <div class="player-eye eye-left"></div>
+                        <div class="player-eye eye-right"></div>
+
+                        <div class="player-nose"></div>
+
+                        <div class="player-mustache"></div>
+
+                    </div>
+
+
+                    <div class="player-body"></div>
+
+                    <div class="player-arm arm-left"></div>
+                    <div class="player-arm arm-right"></div>
+
+                    <div class="player-leg leg-left"></div>
+                    <div class="player-leg leg-right"></div>
+
+                </div>
+
+
+                <!-- =========================================
+                     CHÃO
+                ========================================== -->
+
+                <div
+                    id="ground-layer"
+                    class="ground-layer"
+                >
+
+                    <div class="ground-grass"></div>
+
+                    <div class="ground-dirt"></div>
+
+                    <div class="ground-pattern"></div>
+
+                </div>
+
+
+                <!-- =========================================
+                     FINAL DA FASE
+                ========================================== -->
+
+                <div
+                    id="finish-object"
+                    class="finish-object hidden"
+                >
+
+                    <div class="finish-pole"></div>
+
+                    <div class="finish-flag">
+                        ★
+                    </div>
+
+                </div>
+
+
+                <!-- =========================================
+                     CHECKPOINT
+                ========================================== -->
+
+                <div
+                    id="checkpoint"
+                    class="checkpoint hidden"
+                >
+
+                    <div class="checkpoint-pole"></div>
+
+                    <div class="checkpoint-flag">
+                        ★
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             HUD
+        ================================================== -->
+
+        <section
+            id="game-hud"
+            class="hud"
+        >
+
+            <!-- Vida -->
+
+            <div class="hud-box">
+
+                <span class="hud-icon">
+                    ❤️
+                </span>
+
+                <span
+                    id="hud-lives"
+                    class="hud-value"
+                >
+                    3
+                </span>
+
+            </div>
+
+
+            <!-- Moedas -->
+
+            <div class="hud-box">
+
+                <span class="hud-icon">
+                    🪙
+                </span>
+
+                <span
+                    id="hud-coins"
+                    class="hud-value"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <!-- Estrelas -->
+
+            <div class="hud-box">
+
+                <span class="hud-icon">
+                    ⭐
+                </span>
+
+                <span
+                    id="hud-stars"
+                    class="hud-value"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <!-- Pontuação -->
+
+            <div class="hud-box score-box">
+
+                <span class="hud-label">
+                    SCORE
+                </span>
+
+                <span
+                    id="hud-score"
+                    class="hud-value"
+                >
+                    000000
+                </span>
+
+            </div>
+
+
+            <!-- Mundo -->
+
+            <div class="hud-box world-box">
+
+                <span class="hud-label">
+                    MUNDO
+                </span>
+
+                <span
+                    id="hud-world"
+                    class="hud-value"
+                >
+                    1-1
+                </span>
+
+            </div>
+
+
+            <!-- Pause -->
+
+            <button
+                id="pause-button"
+                class="hud-button"
+                aria-label="Pausar"
+            >
+                ❚❚
+            </button>
+
+        </section>
+
+
+        <!-- =================================================
+             CONTROLES MOBILE
+        ================================================== -->
+
+        <section
+            id="mobile-controls"
+            class="mobile-controls"
+        >
+
+            <div class="movement-controls">
+
+                <button
+                    id="control-left"
+                    class="control-button"
+                    aria-label="Esquerda"
+                >
+                    ◀
+                </button>
+
+
+                <button
+                    id="control-right"
+                    class="control-button"
+                    aria-label="Direita"
+                >
+                    ▶
+                </button>
+
+            </div>
+
+
+            <div class="action-controls">
+
+                <button
+                    id="control-run"
+                    class="control-button secondary-control"
+                    aria-label="Correr"
+                >
+                    ⚡
+                </button>
+
+
+                <button
+                    id="control-jump"
+                    class="control-button jump-control"
+                    aria-label="Pular"
+                >
+                    ▲
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             MINIMAPA
+        ================================================== -->
+
+        <div
+            id="mini-map"
+            class="mini-map"
+        >
+
+            <div
+                id="mini-map-player"
+                class="mini-map-player"
+            ></div>
+
+        </div>
+
+
+        <!-- =================================================
+             MENSAGEM DE FASE
+        ================================================== -->
+
+        <div
+            id="level-message"
+            class="level-message hidden"
+        >
+
+            <span
+                id="level-world-name"
+            >
+                MUNDO 1
+            </span>
+
+            <strong
+                id="level-name"
+            >
+                AVENTURA VERDE
+            </strong>
+
+        </div>
+
+
+    </main>
+
+
+    <!-- =====================================================
+         MAPA DO MUNDO
+    ====================================================== -->
+
+    <section
+        id="world-map-screen"
+        class="screen hidden"
+    >
+
+        <div class="map-background">
+
+            <div class="map-cloud map-cloud-1"></div>
+            <div class="map-cloud map-cloud-2"></div>
+
+            <div class="map-island island-1"></div>
+            <div class="map-island island-2"></div>
+            <div class="map-island island-3"></div>
+
+        </div>
+
+
+        <div class="map-header">
+
+            <h1>
+                🗺️ MAPA DO MUNDO
+            </h1>
+
+            <button
+                id="map-back-button"
+                class="back-button"
+            >
+                ← VOLTAR
+            </button>
+
+        </div>
+
+
+        <div
+            id="world-map"
+            class="world-map"
+        >
+
+            <!-- Nós das fases serão criados pelo JavaScript -->
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MENU DE PAUSA
+    ====================================================== -->
+
+    <section
+        id="pause-screen"
+        class="overlay-screen hidden"
+    >
+
+        <div class="pause-box">
+
+            <div class="pause-icon">
+                ⏸️
+            </div>
+
+            <h1>
+                PAUSADO
+            </h1>
+
+            <button
+                id="resume-button"
+                class="menu-button primary"
+            >
+                ▶ CONTINUAR
+            </button>
+
+            <button
+                id="pause-options-button"
+                class="menu-button"
+            >
+                ⚙️ OPÇÕES
+            </button>
+
+            <button
+                id="quit-button"
+                class="menu-button danger"
+            >
+                🏠 MENU PRINCIPAL
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         GAME OVER
+    ====================================================== -->
+
+    <section
+        id="game-over-screen"
+        class="overlay-screen hidden"
+    >
+
+        <div class="result-box">
+
+            <div class="result-icon">
+                💀
+            </div>
+
+            <h1>
+                GAME OVER
+            </h1>
+
+            <p>
+                A aventura ainda não terminou.
+            </p>
+
+            <div class="result-stats">
+
+                <div>
+                    <span>MOEDAS</span>
+                    <strong id="game-over-coins">
+                        0
+                    </strong>
+                </div>
+
+                <div>
+                    <span>SCORE</span>
+                    <strong id="game-over-score">
+                        000000
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <button
+                id="retry-button"
+                class="menu-button primary"
+            >
+                🔄 TENTAR NOVAMENTE
+            </button>
+
+
+            <button
+                id="game-over-menu-button"
+                class="menu-button"
+            >
+                🏠 MENU PRINCIPAL
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         VITÓRIA
+    ====================================================== -->
+
+    <section
+        id="victory-screen"
+        class="overlay-screen hidden"
+    >
+
+        <div class="result-box victory-box">
+
+            <div class="result-icon">
+                🏆
+            </div>
+
+            <h1>
+                FASE COMPLETA!
+            </h1>
+
+            <p>
+                Parabéns! Você terminou a fase.
+            </p>
+
+
+            <div class="result-stats">
+
+                <div>
+                    <span>🪙 MOEDAS</span>
+
+                    <strong id="victory-coins">
+                        0
+                    </strong>
+                </div>
+
+
+                <div>
+                    <span>⭐ ESTRELAS</span>
+
+                    <strong id="victory-stars">
+                        0
+                    </strong>
+                </div>
+
+
+                <div>
+                    <span>SCORE</span>
+
+                    <strong id="victory-score">
+                        000000
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <button
+                id="next-level-button"
+                class="menu-button primary"
+            >
+                ▶ PRÓXIMA FASE
+            </button>
+
+
+            <button
+                id="victory-map-button"
+                class="menu-button"
+            >
+                🗺️ MAPA DO MUNDO
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         OPÇÕES
+    ====================================================== -->
+
+    <section
+        id="options-screen"
+        class="overlay-screen hidden"
+    >
+
+        <div class="options-box">
+
+            <h1>
+                ⚙️ OPÇÕES
+            </h1>
+
+
+            <div class="option">
+
+                <label for="music-volume">
+                    🎵 Música
+                </label>
+
+                <input
+                    id="music-volume"
+                    type="range"
+                    min="0"
+                    max="100"
+                    value="70"
+                >
+
+                <span id="music-volume-value">
+                    70%
+                </span>
+
+            </div>
+
+
+            <div class="option">
+
+                <label for="sfx-volume">
+                    🔊 Efeitos
+                </label>
+
+                <input
+                    id="sfx-volume"
+                    type="range"
+                    min="0"
+                    max="100"
+                    value="80"
+                >
+
+                <span id="sfx-volume-value">
+                    80%
+                </span>
+
+            </div>
+
+
+            <div class="option">
+
+                <label>
+                    📱 Controles
+                </label>
+
+                <button
+                    id="mobile-controls-toggle"
+                    class="toggle-button active"
+                >
+                    ATIVADOS
+                </button>
+
+            </div>
+
+
+            <div class="option">
+
+                <label>
+                    🖥️ Tela
+                </label>
+
+                <button
+                    id="fullscreen-button"
+                    class="toggle-button"
+                >
+                    TELA CHEIA
+                </button>
+
+            </div>
+
+
+            <button
+                id="close-options-button"
+                class="menu-button primary"
+            >
+                ✓ CONCLUÍDO
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         INVENTÁRIO
+    ====================================================== -->
+
+    <section
+        id="inventory-screen"
+        class="overlay-screen hidden"
+    >
+
+        <div class="inventory-box">
+
+            <h1>
+                🎒 INVENTÁRIO
+            </h1>
+
+
+            <div
+                id="inventory-items"
+                class="inventory-items"
+            >
+
+                <!-- Itens criados pelo JS -->
+
+            </div>
+
+
+            <button
+                id="close-inventory-button"
+                class="menu-button primary"
+            >
+                ← VOLTAR
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SELEÇÃO DE PERSONAGEM
+    ====================================================== -->
+
+    <section
+        id="character-screen"
+        class="screen hidden"
+    >
+
+        <div class="character-container">
+
+            <h1>
+                ESCOLHA SEU HERÓI
+            </h1>
+
+
+            <div
+                id="character-list"
+                class="character-list"
+            >
+
+                <!-- Personagens criados pelo JS -->
+
+            </div>
+
+
+            <button
+                id="character-confirm-button"
+                class="menu-button primary"
+            >
+                ✓ CONFIRMAR
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         NOTIFICAÇÕES
+    ====================================================== -->
+
+    <div
+        id="notification-container"
+        class="notification-container"
+    ></div>
+
+
+    <!-- =====================================================
+         POPUPS
+    ====================================================== -->
+
+    <div
+        id="popup-container"
+        class="popup-container"
+    ></div>
+
+
+    <!-- =====================================================
+         TRANSIÇÃO DE FASE
+    ====================================================== -->
+
+    <div
+        id="level-transition"
+        class="level-transition hidden"
+    >
+
+        <div class="transition-content">
+
+            <div
+                id="transition-world"
+                class="transition-world"
+            >
+                MUNDO 1
+            </div>
+
+            <div
+                id="transition-level"
+                class="transition-level"
+            >
+                1-1
+            </div>
+
+            <div
+                id="transition-title"
+                class="transition-title"
+            >
+                AVENTURA VERDE
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         ÁUDIO
+    ====================================================== -->
+
+    <audio
+        id="music-player"
+        loop
+        preload="auto"
+    ></audio>
+
+
+    <audio
+        id="sfx-player"
+        preload="auto"
+    ></audio>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="game.js"></script>
+    <script src="player.js"></script>
+    <script src="menu.js"></script>
+    <script src="levels.js"></script>
+    <script src="enemies.js"></script>
+    <script src="bosses.js"></script>
+    <script src="sounds.js"></script>
+    <script src="save.js"></script>
+
+</div>
+
+</body>
+
+</html>

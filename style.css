@@ -1,0 +1,2739 @@
+/* =========================================================
+   AVENTURA PIXEL
+   STYLE.CSS
+   Interface completa do jogo
+========================================================= */
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #111;
+
+    color: white;
+
+    user-select: none;
+
+    -webkit-user-select: none;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =========================================================
+   VARIÁVEIS
+========================================================= */
+
+:root {
+
+    --sky: #55c7ff;
+
+    --sky-light: #a8e8ff;
+
+    --grass: #56b938;
+
+    --grass-dark: #287a29;
+
+    --dirt: #9b592e;
+
+    --dirt-dark: #643719;
+
+    --red: #ed3348;
+
+    --red-dark: #941f31;
+
+    --yellow: #ffd83d;
+
+    --yellow-dark: #b77900;
+
+    --blue: #2389d7;
+
+    --blue-dark: #15558c;
+
+    --dark: #12283a;
+
+    --dark-2: #1c4059;
+
+    --white: #ffffff;
+
+    --shadow:
+        0 10px 30px rgba(0, 0, 0, .35);
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+#app {
+    position: relative;
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+
+    background: #111;
+}
+
+
+/* =========================================================
+   TELAS
+========================================================= */
+
+.screen {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    z-index: 100;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.screen.hidden,
+.overlay-screen.hidden,
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+#loading-screen {
+    background:
+        linear-gradient(
+            180deg,
+            #39baf4,
+            #8de1ff
+        );
+}
+
+.loading-container {
+    width: min(430px, 90vw);
+
+    text-align: center;
+}
+
+.loading-logo {
+    margin-bottom: 45px;
+
+    transform: rotate(-2deg);
+}
+
+.loading-logo span {
+    display: block;
+
+    font-size: 25px;
+
+    font-weight: 900;
+
+    letter-spacing: 6px;
+
+    color: #fff;
+
+    text-shadow:
+        3px 3px 0 #24709a;
+}
+
+.loading-logo strong {
+    display: block;
+
+    font-size: clamp(55px, 12vw, 90px);
+
+    line-height: .9;
+
+    color: var(--red);
+
+    letter-spacing: 4px;
+
+    text-shadow:
+        5px 5px 0 var(--red-dark),
+        0 10px 20px rgba(0,0,0,.2);
+}
+
+.loading-bar {
+    position: relative;
+
+    width: 100%;
+    height: 24px;
+
+    padding: 4px;
+
+    overflow: hidden;
+
+    background: rgba(0,0,0,.25);
+
+    border: 3px solid rgba(255,255,255,.9);
+
+    border-radius: 20px;
+
+    box-shadow:
+        inset 0 3px 6px rgba(0,0,0,.25);
+}
+
+.loading-progress {
+    width: 0%;
+    height: 100%;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffe66d,
+            #ffb703
+        );
+
+    transition: width .2s ease;
+}
+
+#loading-text {
+    margin-top: 15px;
+
+    font-size: 14px;
+
+    color: rgba(255,255,255,.9);
+}
+
+
+/* =========================================================
+   MENU PRINCIPAL
+========================================================= */
+
+#main-menu {
+    background:
+        linear-gradient(
+            180deg,
+            #42bdf4 0%,
+            #9be7ff 68%,
+            #65c249 68%,
+            #3b972e 100%
+        );
+}
+
+.menu-background {
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+
+/* Nuvens do menu */
+
+.menu-cloud {
+    position: absolute;
+
+    width: 160px;
+    height: 48px;
+
+    border-radius: 50px;
+
+    background: rgba(255,255,255,.85);
+}
+
+.menu-cloud::before,
+.menu-cloud::after {
+    content: "";
+
+    position: absolute;
+
+    background: inherit;
+
+    border-radius: 50%;
+}
+
+.menu-cloud::before {
+    width: 70px;
+    height: 70px;
+
+    left: 20px;
+    bottom: 10px;
+}
+
+.menu-cloud::after {
+    width: 85px;
+    height: 85px;
+
+    right: 15px;
+    bottom: 5px;
+}
+
+.cloud-a {
+    left: 7%;
+    top: 15%;
+}
+
+.cloud-b {
+    left: 52%;
+    top: 24%;
+
+    transform: scale(.75);
+}
+
+.cloud-c {
+    right: 4%;
+    top: 12%;
+
+    transform: scale(.6);
+}
+
+
+/* Montanhas */
+
+.menu-mountain {
+    position: absolute;
+
+    bottom: 31%;
+
+    width: 280px;
+    height: 220px;
+
+    background: #61ae3d;
+
+    clip-path: polygon(
+        0 100%,
+        50% 0,
+        100% 100%
+    );
+}
+
+.mountain-a {
+    left: 2%;
+}
+
+.mountain-b {
+    right: 8%;
+
+    transform: scale(1.3);
+}
+
+
+/* Conteúdo */
+
+.main-menu-content {
+    position: relative;
+
+    z-index: 10;
+
+    width: min(500px, 92vw);
+
+    text-align: center;
+}
+
+
+/* Logo */
+
+.game-logo {
+    margin-bottom: 35px;
+
+    transform: rotate(-2deg);
+}
+
+.game-logo span {
+    display: block;
+
+    font-size: clamp(20px, 4vw, 30px);
+
+    font-weight: 900;
+
+    letter-spacing: 7px;
+
+    color: #fff;
+
+    text-shadow:
+        3px 3px 0 #286b8e;
+}
+
+.game-logo strong {
+    display: block;
+
+    font-size: clamp(58px, 13vw, 100px);
+
+    line-height: .82;
+
+    color: var(--red);
+
+    text-shadow:
+        5px 5px 0 var(--red-dark),
+        0 12px 20px rgba(0,0,0,.25);
+}
+
+.game-logo small {
+    display: block;
+
+    margin-top: 14px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    letter-spacing: 5px;
+
+    color: white;
+
+    text-shadow:
+        2px 2px 0 rgba(0,0,0,.3);
+}
+
+
+/* =========================================================
+   BOTÕES
+========================================================= */
+
+.menu-buttons {
+    display: grid;
+
+    gap: 13px;
+
+    width: min(330px, 85vw);
+
+    margin: auto;
+}
+
+.menu-button {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 54px;
+
+    padding: 13px 20px;
+
+    border: 3px solid rgba(255,255,255,.35);
+
+    border-radius: 14px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #28516c,
+            #17384f
+        );
+
+    box-shadow:
+        0 5px 0 #0b2333,
+        0 9px 18px rgba(0,0,0,.25);
+
+    font-size: 17px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    transition:
+        transform .12s,
+        box-shadow .12s,
+        filter .12s;
+}
+
+.menu-button span {
+    margin-right: 8px;
+}
+
+.menu-button:hover {
+    filter: brightness(1.15);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 0 #0b2333,
+        0 12px 20px rgba(0,0,0,.25);
+}
+
+.menu-button:active {
+    transform: translateY(4px);
+
+    box-shadow:
+        0 2px 0 #0b2333,
+        0 5px 10px rgba(0,0,0,.2);
+}
+
+.menu-button.primary {
+    background:
+        linear-gradient(
+            135deg,
+            #ff4c5c,
+            #d9213b
+        );
+
+    box-shadow:
+        0 5px 0 #8e1b2c,
+        0 9px 18px rgba(0,0,0,.25);
+}
+
+.menu-button.danger {
+    background:
+        linear-gradient(
+            135deg,
+            #8e3030,
+            #5f2020
+        );
+}
+
+
+/* Rodapé */
+
+.menu-footer {
+    display: flex;
+
+    justify-content: space-between;
+
+    width: min(330px, 85vw);
+
+    margin: 30px auto 0;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    color: rgba(255,255,255,.8);
+}
+
+
+/* =========================================================
+   JOGO
+========================================================= */
+
+#game {
+    background: var(--sky);
+
+    z-index: 50;
+}
+
+
+/* Camadas */
+
+.game-layer {
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   CÉU
+========================================================= */
+
+#sky-layer {
+    z-index: 0;
+}
+
+.sky-gradient {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            #3bb8f4 0%,
+            #8bdefd 60%,
+            #d8f5ff 100%
+        );
+}
+
+.sun {
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    top: 9%;
+    right: 8%;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #fff6a0,
+            #ffd63d 65%,
+            #ffb703
+        );
+
+    box-shadow:
+        0 0 30px rgba(255,220,70,.65),
+        0 0 70px rgba(255,220,70,.35);
+}
+
+
+/* =========================================================
+   NUVENS
+========================================================= */
+
+.cloud {
+    position: absolute;
+
+    width: 155px;
+    height: 45px;
+
+    border-radius: 50px;
+
+    background: rgba(255,255,255,.86);
+
+    opacity: .9;
+}
+
+.cloud::before,
+.cloud::after {
+    content: "";
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    background: inherit;
+}
+
+.cloud::before {
+    width: 65px;
+    height: 65px;
+
+    left: 20px;
+    bottom: 7px;
+}
+
+.cloud::after {
+    width: 85px;
+    height: 85px;
+
+    right: 15px;
+    bottom: 5px;
+}
+
+.cloud-1 {
+    top: 16%;
+    left: 8%;
+}
+
+.cloud-2 {
+    top: 28%;
+    left: 35%;
+
+    transform: scale(.7);
+}
+
+.cloud-3 {
+    top: 18%;
+    left: 62%;
+
+    transform: scale(.55);
+}
+
+.cloud-4 {
+    top: 38%;
+    left: 82%;
+
+    transform: scale(.8);
+}
+
+
+/* =========================================================
+   WORLD
+========================================================= */
+
+#world-container {
+    z-index: 5;
+
+    pointer-events: none;
+}
+
+.world {
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 5000px;
+    height: 100%;
+
+    will-change: transform;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.background-layer {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    pointer-events: none;
+}
+
+
+/* Montanhas */
+
+.mountains {
+    position: absolute;
+
+    left: 0;
+
+    width: 5000px;
+
+    pointer-events: none;
+}
+
+.mountains-back {
+    bottom: 90px;
+
+    height: 250px;
+
+    opacity: .5;
+
+    background: #6fba54;
+
+    clip-path: polygon(
+        0 100%,
+        5% 45%,
+        12% 100%,
+        19% 25%,
+        28% 100%,
+        38% 42%,
+        47% 100%,
+        57% 27%,
+        68% 100%,
+        77% 39%,
+        87% 100%,
+        94% 30%,
+        100% 100%
+    );
+}
+
+.mountains-front {
+    bottom: 90px;
+
+    height: 180px;
+
+    background: #429637;
+
+    clip-path: polygon(
+        0 100%,
+        8% 45%,
+        17% 100%,
+        27% 28%,
+        39% 100%,
+        50% 42%,
+        62% 100%,
+        74% 30%,
+        87% 100%,
+        96% 43%,
+        100% 100%
+    );
+}
+
+
+/* =========================================================
+   DECORAÇÃO
+========================================================= */
+
+.decoration-layer {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 3;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   ENTIDADES
+========================================================= */
+
+.entity-layer {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 15;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   BLOCOS
+========================================================= */
+
+.block-layer {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 20;
+
+    pointer-events: none;
+}
+
+.block {
+    position: absolute;
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+
+    font-size: 25px;
+
+    font-weight: 900;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffc46b,
+            #e88736
+        );
+
+    border: 4px solid #914e20;
+
+    border-radius: 5px;
+
+    box-shadow:
+        inset 0 0 0 2px rgba(255,255,255,.25),
+        0 4px 0 #6a3517;
+}
+
+.question-block {
+    animation: questionBlock .9s ease-in-out infinite alternate;
+}
+
+@keyframes questionBlock {
+
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-4px);
+    }
+}
+
+
+/* =========================================================
+   ITENS
+========================================================= */
+
+.item-layer {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 25;
+
+    pointer-events: none;
+}
+
+
+/* Moeda */
+
+.coin {
+    position: absolute;
+
+    width: 28px;
+    height: 32px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse at 35% 25%,
+            #fff8a7,
+            #ffd52e 40%,
+            #ee9900 100%
+        );
+
+    border: 3px solid #cf7f00;
+
+    box-shadow:
+        0 0 12px rgba(255,210,40,.65);
+}
+
+
+/* =========================================================
+   INIMIGOS
+========================================================= */
+
+.enemy-layer {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 30;
+
+    pointer-events: none;
+}
+
+.enemy {
+    position: absolute;
+
+    width: 48px;
+    height: 43px;
+
+    border-radius:
+        22px
+        22px
+        10px
+        10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #9b4dff,
+            #6418af
+        );
+
+    border: 4px solid #42117b;
+
+    box-shadow:
+        0 5px 0 rgba(0,0,0,.2);
+}
+
+.enemy::before,
+.enemy::after {
+    content: "";
+
+    position: absolute;
+
+    top: 9px;
+
+    width: 10px;
+    height: 13px;
+
+    background: white;
+
+    border-radius: 50%;
+}
+
+.enemy::before {
+    left: 8px;
+}
+
+.enemy::after {
+    right: 8px;
+}
+
+
+/* =========================================================
+   EFEITOS
+========================================================= */
+
+.effect-layer {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 80;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   JOGADOR
+========================================================= */
+
+.player {
+    position: absolute;
+
+    left: 100px;
+    bottom: 90px;
+
+    width: 48px;
+    height: 65px;
+
+    z-index: 50;
+
+    transform-origin: bottom center;
+
+    pointer-events: none;
+
+    filter:
+        drop-shadow(
+            0 6px 3px rgba(0,0,0,.25)
+        );
+}
+
+
+/* Sombra */
+
+.player-shadow {
+    position: absolute;
+
+    left: 5px;
+    bottom: -4px;
+
+    width: 40px;
+    height: 10px;
+
+    background: rgba(0,0,0,.22);
+
+    border-radius: 50%;
+
+    filter: blur(2px);
+}
+
+
+/* Chapéu */
+
+.player-hat {
+    position: absolute;
+
+    z-index: 8;
+
+    left: 2px;
+    top: 3px;
+
+    width: 44px;
+    height: 19px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ff5663,
+            #d51f36
+        );
+
+    border:
+        3px solid #941d2e;
+
+    border-radius:
+        18px
+        18px
+        5px
+        5px;
+}
+
+.player-hat::after {
+    content: "★";
+
+    position: absolute;
+
+    left: 50%;
+    top: 0;
+
+    transform: translateX(-50%);
+
+    color: white;
+
+    font-size: 10px;
+}
+
+
+/* Cabeça */
+
+.player-head {
+    position: absolute;
+
+    z-index: 7;
+
+    left: 7px;
+    top: 11px;
+
+    width: 35px;
+    height: 35px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd49e,
+            #e79c65
+        );
+
+    border:
+        3px solid #a85d39;
+
+    border-radius:
+        48%
+        48%
+        45%
+        45%;
+}
+
+
+/* Olhos */
+
+.player-eye {
+    position: absolute;
+
+    top: 10px;
+
+    width: 6px;
+    height: 9px;
+
+    background: #171717;
+
+    border-radius: 50%;
+}
+
+.eye-left {
+    left: 7px;
+}
+
+.eye-right {
+    right: 7px;
+}
+
+
+/* Nariz */
+
+.player-nose {
+    position: absolute;
+
+    left: 50%;
+    top: 16px;
+
+    width: 10px;
+    height: 8px;
+
+    transform: translateX(-50%);
+
+    background: #e69a64;
+
+    border-radius: 50%;
+}
+
+
+/* Bigode */
+
+.player-mustache {
+    position: absolute;
+
+    left: 50%;
+    bottom: 4px;
+
+    width: 21px;
+    height: 8px;
+
+    transform: translateX(-50%);
+
+    background: #563021;
+
+    border-radius: 50%;
+}
+
+
+/* Corpo */
+
+.player-body {
+    position: absolute;
+
+    left: 6px;
+    bottom: 9px;
+
+    width: 36px;
+    height: 37px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #176fc0,
+            #2396e8,
+            #135eaa
+        );
+
+    border:
+        3px solid #104b8b;
+
+    border-radius:
+        10px
+        10px
+        7px
+        7px;
+}
+
+
+/* Braços */
+
+.player-arm {
+    position: absolute;
+
+    z-index: 3;
+
+    top: 34px;
+
+    width: 10px;
+    height: 25px;
+
+    background: #237dca;
+
+    border-radius: 8px;
+}
+
+.arm-left {
+    left: 0;
+
+    transform: rotate(15deg);
+}
+
+.arm-right {
+    right: 0;
+
+    transform: rotate(-15deg);
+}
+
+
+/* Pernas */
+
+.player-leg {
+    position: absolute;
+
+    bottom: 1px;
+
+    width: 19px;
+    height: 12px;
+
+    background: #74381f;
+
+    border-radius: 8px;
+}
+
+.leg-left {
+    left: 2px;
+}
+
+.leg-right {
+    right: 2px;
+}
+
+
+/* =========================================================
+   CHÃO
+========================================================= */
+
+.ground-layer {
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 5000px;
+    height: 90px;
+
+    z-index: 40;
+
+    pointer-events: none;
+}
+
+.ground-grass {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 5000px;
+    height: 15px;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #7bd94a 0 18px,
+            #5fc33a 18px 36px
+        );
+
+    border-bottom: 4px solid #328a2b;
+}
+
+.ground-dirt {
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 5000px;
+    height: 75px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #a86132,
+            #86471f
+        );
+}
+
+.ground-pattern {
+    position: absolute;
+
+    inset: 20px 0 0;
+
+    opacity: .18;
+
+    background-image:
+        radial-gradient(
+            circle,
+            #3e2112 2px,
+            transparent 3px
+        );
+
+    background-size:
+        32px 24px;
+}
+
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+.finish-object {
+    position: absolute;
+
+    left: 3800px;
+    bottom: 90px;
+
+    width: 100px;
+    height: 190px;
+
+    z-index: 45;
+}
+
+.finish-pole {
+    position: absolute;
+
+    left: 42px;
+    bottom: 0;
+
+    width: 9px;
+    height: 180px;
+
+    border-radius: 5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #777,
+            #eee,
+            #888
+        );
+}
+
+.finish-flag {
+    position: absolute;
+
+    left: 49px;
+    top: 10px;
+
+    width: 60px;
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+
+    font-size: 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff4757,
+            #c71d35
+        );
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 20%,
+            75% 50%,
+            100% 80%,
+            0 100%
+        );
+}
+
+
+/* =========================================================
+   CHECKPOINT
+========================================================= */
+
+.checkpoint {
+    position: absolute;
+
+    left: 1900px;
+    bottom: 90px;
+
+    width: 90px;
+    height: 170px;
+
+    z-index: 44;
+}
+
+.checkpoint-pole {
+    position: absolute;
+
+    left: 38px;
+    bottom: 0;
+
+    width: 8px;
+    height: 160px;
+
+    background: #888;
+
+    border-radius: 5px;
+}
+
+.checkpoint-flag {
+    position: absolute;
+
+    left: 44px;
+    top: 8px;
+
+    width: 55px;
+    height: 40px;
+
+    background: #ffd43b;
+
+    color: #8b6200;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 20%,
+            75% 50%,
+            100% 80%,
+            0 100%
+        );
+}
+
+
+/* =========================================================
+   HUD
+========================================================= */
+
+.hud {
+    position: fixed;
+
+    left: 15px;
+    right: 15px;
+    top: 15px;
+
+    z-index: 300;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+.hud-box {
+    min-width: 72px;
+
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    padding: 0 11px;
+
+    border:
+        2px solid rgba(255,255,255,.35);
+
+    border-radius: 12px;
+
+    background:
+        rgba(12,35,52,.78);
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.2);
+
+    backdrop-filter: blur(7px);
+}
+
+.hud-icon {
+    font-size: 18px;
+}
+
+.hud-label {
+    font-size: 10px;
+
+    font-weight: bold;
+
+    color: #a9d3e8;
+}
+
+.hud-value {
+    font-size: 16px;
+
+    font-weight: 900;
+
+    color: white;
+}
+
+.score-box {
+    min-width: 120px;
+}
+
+.world-box {
+    min-width: 85px;
+}
+
+.hud-button {
+    margin-left: auto;
+
+    width: 45px;
+    height: 45px;
+
+    border: 2px solid rgba(255,255,255,.7);
+
+    border-radius: 12px;
+
+    color: white;
+
+    background:
+        rgba(12,35,52,.8);
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.2);
+
+    transition: .12s;
+}
+
+.hud-button:hover {
+    background: #2389d7;
+
+    transform: scale(1.06);
+}
+
+
+/* =========================================================
+   CONTROLES MOBILE
+========================================================= */
+
+.mobile-controls {
+    position: fixed;
+
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+
+    z-index: 350;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    pointer-events: none;
+}
+
+.movement-controls,
+.action-controls {
+    display: flex;
+
+    gap: 12px;
+
+    pointer-events: auto;
+}
+
+.control-button {
+    width: 65px;
+    height: 65px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        3px solid rgba(255,255,255,.9);
+
+    border-radius: 50%;
+
+    color: white;
+
+    background:
+        rgba(16,43,62,.62);
+
+    box-shadow:
+        0 7px 15px rgba(0,0,0,.25);
+
+    backdrop-filter: blur(5px);
+
+    font-size: 23px;
+
+    cursor: pointer;
+
+    touch-action: none;
+
+    transition:
+        transform .08s,
+        background .08s;
+}
+
+.control-button:active {
+    transform: scale(.88);
+
+    background:
+        rgba(35,137,215,.9);
+}
+
+.jump-control {
+    width: 78px;
+    height: 78px;
+
+    background:
+        rgba(221,42,60,.72);
+}
+
+.jump-control:active {
+    background:
+        rgba(221,42,60,1);
+}
+
+
+/* =========================================================
+   MINIMAPA
+========================================================= */
+
+.mini-map {
+    position: fixed;
+
+    right: 15px;
+    top: 72px;
+
+    width: 190px;
+    height: 30px;
+
+    z-index: 290;
+
+    overflow: hidden;
+
+    border:
+        2px solid rgba(255,255,255,.4);
+
+    border-radius: 12px;
+
+    background:
+        rgba(10,35,50,.55);
+
+    backdrop-filter: blur(5px);
+}
+
+.mini-map-player {
+    position: absolute;
+
+    left: 0;
+
+    top: 8px;
+
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    background: #ff4052;
+
+    box-shadow:
+        0 0 8px #ff4052;
+}
+
+
+/* =========================================================
+   LEVEL MESSAGE
+========================================================= */
+
+.level-message {
+    position: fixed;
+
+    left: 50%;
+    top: 50%;
+
+    z-index: 450;
+
+    transform:
+        translate(-50%, -50%);
+
+    text-align: center;
+
+    padding: 25px 40px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(10,35,50,.9);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.35);
+
+    animation:
+        levelMessage .4s ease-out;
+}
+
+.level-message span {
+    display: block;
+
+    font-size: 15px;
+
+    color: #a9d9ee;
+}
+
+.level-message strong {
+    display: block;
+
+    margin-top: 7px;
+
+    font-size: 30px;
+
+    color: #ffd83d;
+}
+
+@keyframes levelMessage {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(.8);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+}
+
+
+/* =========================================================
+   OVERLAYS
+========================================================= */
+
+.overlay-screen {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 600;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(7,22,35,.72);
+
+    backdrop-filter: blur(7px);
+}
+
+
+/* =========================================================
+   PAUSE
+========================================================= */
+
+.pause-box,
+.result-box,
+.options-box,
+.inventory-box {
+    width: min(470px, 94vw);
+
+    padding: 35px 30px;
+
+    text-align: center;
+
+    border:
+        3px solid rgba(255,255,255,.25);
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #193f59,
+            #0c2639
+        );
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.45);
+
+    animation:
+        popupAppear .25s ease-out;
+}
+
+@keyframes popupAppear {
+
+    from {
+        opacity: 0;
+
+        transform: scale(.85);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: scale(1);
+    }
+}
+
+.pause-icon,
+.result-icon {
+    font-size: 65px;
+
+    margin-bottom: 8px;
+}
+
+.pause-box h1,
+.result-box h1,
+.options-box h1,
+.inventory-box h1 {
+    margin-bottom: 22px;
+
+    font-size: 35px;
+
+    color: #ffd83d;
+
+    text-shadow:
+        3px 3px 0 #8c6410;
+}
+
+.pause-box .menu-button,
+.result-box .menu-button {
+    margin-top: 12px;
+}
+
+
+/* =========================================================
+   RESULTADOS
+========================================================= */
+
+.result-box p {
+    margin-bottom: 20px;
+
+    color: #c6e1ed;
+
+    line-height: 1.5;
+}
+
+.result-stats {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin: 20px 0;
+}
+
+.result-stats > div {
+    flex: 1;
+
+    min-width: 80px;
+
+    padding: 13px 8px;
+
+    border-radius: 12px;
+
+    background:
+        rgba(255,255,255,.07);
+}
+
+.result-stats span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    color: #9fc5d7;
+}
+
+.result-stats strong {
+    font-size: 19px;
+
+    color: #fff;
+}
+
+.victory-box {
+    border-color:
+        rgba(255,216,61,.4);
+}
+
+
+/* =========================================================
+   MAPA DO MUNDO
+========================================================= */
+
+#world-map-screen {
+    background:
+        linear-gradient(
+            180deg,
+            #49c4ef,
+            #a4e7f9 60%,
+            #65b949 60%
+        );
+}
+
+.map-background {
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+}
+
+
+/* Ilhas */
+
+.map-island {
+    position: absolute;
+
+    border-radius: 45%;
+
+    background:
+        #66bd42;
+
+    border:
+        8px solid #3c902f;
+
+    box-shadow:
+        inset 0 -15px 0 rgba(0,0,0,.1);
+}
+
+.island-1 {
+    width: 500px;
+    height: 300px;
+
+    left: 5%;
+    top: 30%;
+
+    transform: rotate(-8deg);
+}
+
+.island-2 {
+    width: 400px;
+    height: 250px;
+
+    left: 43%;
+    top: 15%;
+
+    transform: rotate(5deg);
+}
+
+.island-3 {
+    width: 450px;
+    height: 280px;
+
+    right: 3%;
+    bottom: 8%;
+
+    transform: rotate(-5deg);
+}
+
+
+/* Nuvens */
+
+.map-cloud {
+    position: absolute;
+
+    width: 170px;
+    height: 48px;
+
+    border-radius: 50px;
+
+    background: rgba(255,255,255,.75);
+}
+
+.map-cloud-1 {
+    top: 10%;
+    left: 10%;
+}
+
+.map-cloud-2 {
+    top: 18%;
+    right: 12%;
+}
+
+
+/* Cabeçalho */
+
+.map-header {
+    position: absolute;
+
+    left: 20px;
+    right: 20px;
+    top: 20px;
+
+    z-index: 20;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+.map-header h1 {
+    padding: 13px 20px;
+
+    border-radius: 14px;
+
+    background:
+        rgba(10,35,50,.78);
+
+    box-shadow:
+        var(--shadow);
+
+    font-size: 24px;
+}
+
+.back-button {
+    padding: 12px 18px;
+
+    border: 2px solid white;
+
+    border-radius: 12px;
+
+    color: white;
+
+    background:
+        rgba(10,35,50,.78);
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+/* Mapa */
+
+.world-map {
+    position: absolute;
+
+    inset: 90px 20px 20px;
+
+    z-index: 15;
+}
+
+
+/* =========================================================
+   OPÇÕES
+========================================================= */
+
+.options-box {
+    text-align: left;
+}
+
+.options-box h1 {
+    text-align: center;
+}
+
+.option {
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1.5fr
+        55px;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 17px;
+
+    padding: 13px;
+
+    border-radius: 12px;
+
+    background:
+        rgba(255,255,255,.06);
+}
+
+.option label {
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+.option input[type="range"] {
+    width: 100%;
+
+    accent-color: #ffd83d;
+}
+
+.option > span {
+    text-align: right;
+
+    font-size: 12px;
+
+    color: #bcd9e6;
+}
+
+.toggle-button {
+    padding: 8px;
+
+    border: 2px solid rgba(255,255,255,.25);
+
+    border-radius: 8px;
+
+    color: white;
+
+    background: #35566b;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.toggle-button.active {
+    background: #2ca84b;
+}
+
+
+/* =========================================================
+   INVENTÁRIO
+========================================================= */
+
+.inventory-items {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 12px;
+
+    margin-bottom: 25px;
+}
+
+.inventory-item {
+    min-height: 80px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background:
+        rgba(255,255,255,.07);
+
+    font-size: 28px;
+}
+
+.inventory-item span {
+    margin-top: 5px;
+
+    font-size: 10px;
+
+    color: #a8cad9;
+}
+
+
+/* =========================================================
+   PERSONAGEM
+========================================================= */
+
+.character-container {
+    width: min(850px, 94vw);
+
+    padding: 30px;
+
+    text-align: center;
+
+    border-radius: 25px;
+
+    background:
+        rgba(12,38,55,.92);
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.4);
+}
+
+.character-container h1 {
+    margin-bottom: 25px;
+
+    color: #ffd83d;
+}
+
+.character-list {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(140px, 1fr));
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+.character-card {
+    min-height: 170px;
+
+    padding: 15px;
+
+    border: 3px solid transparent;
+
+    border-radius: 16px;
+
+    background:
+        rgba(255,255,255,.07);
+
+    cursor: pointer;
+
+    transition: .15s;
+}
+
+.character-card:hover {
+    transform: translateY(-5px);
+
+    background:
+        rgba(255,255,255,.12);
+}
+
+.character-card.selected {
+    border-color: #ffd83d;
+
+    box-shadow:
+        0 0 20px rgba(255,216,61,.25);
+}
+
+
+/* =========================================================
+   NOTIFICAÇÕES
+========================================================= */
+
+.notification-container {
+    position: fixed;
+
+    top: 80px;
+    right: 20px;
+
+    z-index: 1000;
+
+    width: min(330px, 90vw);
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.notification {
+    padding: 14px 17px;
+
+    border-left:
+        5px solid #ffd83d;
+
+    border-radius: 10px;
+
+    color: white;
+
+    background:
+        rgba(10,35,50,.92);
+
+    box-shadow:
+        var(--shadow);
+
+    animation:
+        notificationIn .25s ease-out;
+}
+
+@keyframes notificationIn {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(30px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(0);
+    }
+}
+
+
+/* =========================================================
+   POPUPS
+========================================================= */
+
+.popup-container {
+    position: fixed;
+
+    left: 50%;
+    bottom: 120px;
+
+    z-index: 1000;
+
+    transform: translateX(-50%);
+
+    pointer-events: none;
+}
+
+.popup {
+    padding: 10px 20px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(10,35,50,.9);
+
+    color: #ffd83d;
+
+    font-weight: 900;
+
+    box-shadow:
+        var(--shadow);
+
+    animation:
+        popupText 1s ease-out forwards;
+}
+
+@keyframes popupText {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(20px)
+            scale(.8);
+    }
+
+    20% {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translateY(-50px)
+            scale(1.1);
+    }
+}
+
+
+/* =========================================================
+   TRANSIÇÃO
+========================================================= */
+
+.level-transition {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 2000;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        #102c40;
+
+    animation:
+        transitionFade .5s ease;
+}
+
+.transition-content {
+    text-align: center;
+}
+
+.transition-world {
+    font-size: 18px;
+
+    letter-spacing: 5px;
+
+    color: #8dcce8;
+}
+
+.transition-level {
+    margin-top: 5px;
+
+    font-size: clamp(70px, 15vw, 130px);
+
+    line-height: .9;
+
+    color: #ffd83d;
+
+    font-weight: 900;
+
+    text-shadow:
+        5px 5px 0 #8d6410;
+}
+
+.transition-title {
+    margin-top: 15px;
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+    color: white;
+}
+
+@keyframes transitionFade {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   ANIMAÇÕES DO JOGADOR
+========================================================= */
+
+.player.jumping {
+    animation:
+        playerJump .18s ease-out;
+}
+
+@keyframes playerJump {
+
+    0% {
+        transform: scaleY(1);
+    }
+
+    50% {
+        transform:
+            scaleX(.9)
+            scaleY(1.1);
+    }
+
+    100% {
+        transform: scaleY(1);
+    }
+}
+
+.player.hit {
+    animation:
+        playerHit .1s linear infinite;
+}
+
+@keyframes playerHit {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: .15;
+    }
+}
+
+
+/* =========================================================
+   MOEDA
+========================================================= */
+
+.coin.collected {
+    animation:
+        coinCollect .3s ease-out forwards;
+}
+
+@keyframes coinCollect {
+
+    to {
+        opacity: 0;
+
+        transform:
+            translateY(-35px)
+            scale(1.5);
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .hud {
+        left: 8px;
+        right: 8px;
+        top: 8px;
+
+        gap: 5px;
+    }
+
+    .hud-box {
+        min-width: 52px;
+
+        height: 40px;
+
+        padding: 0 7px;
+
+        border-radius: 10px;
+    }
+
+    .hud-icon {
+        font-size: 15px;
+    }
+
+    .hud-value {
+        font-size: 13px;
+    }
+
+    .score-box {
+        min-width: 85px;
+    }
+
+    .world-box {
+        min-width: 60px;
+    }
+
+    .hud-button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .mini-map {
+        display: none;
+    }
+
+    .game-logo {
+        margin-bottom: 25px;
+    }
+
+    .game-logo small {
+        letter-spacing: 3px;
+    }
+
+    .map-header h1 {
+        font-size: 17px;
+    }
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .mobile-controls {
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+    }
+
+    .control-button {
+        width: 58px;
+        height: 58px;
+    }
+
+    .jump-control {
+        width: 70px;
+        height: 70px;
+    }
+
+    .secondary-control {
+        display: none;
+    }
+
+    .result-stats {
+        flex-wrap: wrap;
+    }
+
+    .result-stats > div {
+        min-width: 90px;
+    }
+
+    .pause-box,
+    .result-box,
+    .options-box,
+    .inventory-box {
+        padding: 25px 18px;
+    }
+
+    .pause-box h1,
+    .result-box h1,
+    .options-box h1,
+    .inventory-box h1 {
+        font-size: 29px;
+    }
+
+    .option {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .option > span {
+        display: none;
+    }
+
+    .inventory-items {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+}
+
+
+/* =========================================================
+   CELULAR PEQUENO / PAISAGEM
+========================================================= */
+
+@media (max-height: 600px) {
+
+    .hud {
+        top: 6px;
+    }
+
+    .hud-box {
+        height: 35px;
+    }
+
+    .hud-button {
+        height: 35px;
+        width: 35px;
+    }
+
+    .mobile-controls {
+        bottom: 6px;
+    }
+
+    .control-button {
+        width: 50px;
+        height: 50px;
+    }
+
+    .jump-control {
+        width: 58px;
+        height: 58px;
+    }
+
+    .menu-box {
+        padding: 18px;
+    }
+
+    .game-logo strong {
+        font-size: 48px;
+    }
+}
+
+
+/* =========================================================
+   ACESSIBILIDADE
+========================================================= */
+
+button:focus-visible {
+    outline: 3px solid #ffe66d;
+
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   DESABILITAR SELEÇÃO
+========================================================= */
+
+button,
+.player,
+.coin,
+.enemy,
+.block {
+    user-select: none;
+
+    -webkit-user-select: none;
+}
+
+
+/* =========================================================
+   PERFORMANCE
+========================================================= */
+
+.world,
+.player,
+.enemy,
+.coin {
+    will-change: transform;
+}
+
+
+/* =========================================================
+   FIM
+========================================================= */
